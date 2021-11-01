@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/8.3.1/firebase-firestore.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-auth.js"></script>
+    <script src="./config.js"></script>
+    <script src="./modules/redirect.js"></script>
+    <script src="./modules/auth/RedirectIfNotAuthenticated.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+      integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="./assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./assets/css/app.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"
+      rel="stylesheet"
+    />
+    <title>Smart Project Manager - Add a New Project</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+      <!-- Brand -->
+      <a class="navbar-brand" href="#">Smart Project Manager</a>
+
+      <!-- Toggler/collapsibe Button -->
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#collapsibleNavbar"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Navbar links -->
+      <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="new-project.html">New Project</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="projects.html">My Projects</a>
+          </li>
+        </ul>
+
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a href="#" class="nav-link" id="displayName"></a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link" id="signout-btn">Signout</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container mt-5">
+      <div class="row justify-content-center">
+        <div class="col-sm-10">
+          <div id="messages"></div>
+
+          <div class="card">
+            <div class="card-header">
+              <h4 class="card-title">My Projects</h4>
+            </div>
+            <div class="card-body">
+              <form id="new-project-form">
+                <div class="form-row">
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                      <label for="client-name">Client Name</label>
+                      <input
+                        type="text"
+                        name="client_name"
+                        id="client-name"
+                        class="form-control"
+                        placeholder="Client Name"
+                      />
+                    </div>
+                  </div>
+
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                      <label for="client-contact">Client Contact</label>
+                      <input
+                        type="text"
+                        name="client_contact"
+                        id="client-contact"
+                        class="form-control"
+                        placeholder="Contact"
+                      />
+                    </div>
+                  </div>
+
+                  <div class="col-sm-4">
+                    <div class="form-group">
+                      <label for="client-email">Client Email</label>
+                      <input
+                        type="email"
+                        name="client_email"
+                        id="client-email"
+                        class="form-control"
+                        placeholder="Email"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="col-sm-4">
+                    <label for="project-name">Project Name</label>
+                    <input
+                      type="text"
+                      name="project_name"
+                      id="project-name"
+                      class="form-control"
+                      placeholder="Project Name"
+                    />
+                  </div>
+
+                  <div class="col-sm-4">
+                    <label for="project-budget">Project Budget ($)</label>
+                    <input
+                      type="number"
+                      name="project_budget"
+                      id="project-budget"
+                      class="form-control"
+                      placeholder="Project Budget"
+                    />
+                  </div>
+
+                  <div class="col-sm-4">
+                    <label for="developers">Developers</label>
+                    <select
+                      class="form-control"
+                      multiple="multiple"
+                      name="developers"
+                      id="developers"
+                    ></select>
+                  </div>
+                </div>
+
+                <div class="form-row mt-3">
+                  <div class="col-sm-6">
+                    <label for="starting-date">Starting Date</label>
+                    <input
+                      type="date"
+                      name="starting_date"
+                      id="starting-date"
+                      class="form-control"
+                    />
+                  </div>
+
+                  <div class="col-sm-6">
+                    <label for="deadline">Deadline</label>
+                    <input
+                      type="date"
+                      name="deadline"
+                      id="deadline"
+                      class="form-control"
+                    />
+                  </div>
+                </div>
+
+                <div class="form-row mt-3">
+                  <div class="col-sm-12">
+                    <label for="description">Project Description</label>
+                    <textarea
+                      type="date"
+                      name="description"
+                      id="description"
+                      class="form-control"
+                      rows="5"
+                      placeholder="Enter details about the project"
+                    ></textarea>
+                  </div>
+
+                  <div class="form-row mt-4">
+                    <div class="col-sm-2">
+                      <input
+                        type="submit"
+                        value="Add Project"
+                        class="btn btn-info"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Script -->
+    <script src="https://momentjs.com/downloads/moment.min.js"></script>
+    <script src="./utils/helpers.js"></script>
+    <script src="./modules/auth/signout.js"></script>
+    <script src="./modules/new-project.js"></script>
+  </body>
+</html>

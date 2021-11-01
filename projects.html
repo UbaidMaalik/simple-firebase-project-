@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-app.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/8.3.1/firebase-firestore.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.1/firebase-auth.js"></script>
+    <script src="./config.js"></script>
+    <script src="./modules/redirect.js"></script>
+    <script src="./modules/auth/RedirectIfNotAuthenticated.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+      integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="./assets/js/moment.min.js"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="./assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./assets/css/app.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"
+      rel="stylesheet"
+    />
+    <title>Smart Project Manager - My Projects</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+      <!-- Brand -->
+      <a class="navbar-brand" href="#">Smart Project Manager</a>
+
+      <!-- Toggler/collapsibe Button -->
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#collapsibleNavbar"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Navbar links -->
+      <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="new-project.html">New Project</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="projects.html">My Projects</a>
+          </li>
+        </ul>
+
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a href="#" class="nav-link" id="displayName"></a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link" id="signout-btn">Signout</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container-fluid mt-5">
+      <div class="row justify-content-center">
+        <div class="col-md-12">
+          <div id="messages"></div>
+
+          <div class="card">
+            <div class="card-header">
+              <h4 class="card-title">My Projects</h4>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table">
+                  <thead class="thead-light">
+                    <tr>
+                      <th>S#</th>
+                      <th>Project Name</th>
+                      <th>Budget ($)</th>
+                      <th>Client Name</th>
+                      <th>Client Contact</th>
+                      <th>Client Email</th>
+                      <th>Starting Date</th>
+                      <th>Deadline</th>
+                      <th>Days Left</th>
+                      <th>Developers</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+
+                  <tbody id="projects-wrapper"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Script -->
+    <script src="./utils/helpers.js"></script>
+    <script src="./modules/auth/signout.js"></script>
+    <script src="./modules/projects.js"></script>
+  </body>
+</html>

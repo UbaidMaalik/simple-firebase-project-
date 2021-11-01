@@ -1,0 +1,58 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #f7f7f7;
+}
+
+body:not(.material-icons) {
+  font-family: "Poppins", sans-serif !important;
+}
+.select2-container--default.select2-container--focus
+  .select2-selection--multiple {
+  /* border: solid black 1px; */
+  outline: 0;
+  display: block;
+  width: 100%;
+  height: calc(1.5em + 2rem);
+  padding: 1rem 0;
+  font-size: 0.8125rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #666;
+  background-color: transparent;
+  background-clip: padding-box;
+  border: 0 solid transparent !important;
+  border-radius: 0;
+  border-bottom: 0px solid #ccc !important;
+}
+.select2-container--default .select2-selection--multiple {
+  background-color: white;
+  border: 0 !important;
+  border-radius: 4px;
+  cursor: text;
+  padding-bottom: 5px;
+  padding-right: 5px;
+  position: relative;
+}
+.select2-container {
+  box-sizing: border-box;
+  display: inline-block;
+  margin: 0;
+  position: relative;
+  vertical-align: middle;
+  border-bottom: 1px solid #ccc !important;
+  padding-bottom: -0.55em;
+}
+.table thead th {
+  vertical-align: top;
+  border-bottom: 2px solid #dee2e6;
+}
+.table td,
+.table th {
+  padding: 6px;
+}
